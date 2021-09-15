@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-mbmqon
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mbmqon
+  namespace: my-nginx-mbmqon
+  labels:
+    name: nginx-mbmqon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-mbmqon
+  template:
+    metadata:
+      namespace: my-nginx-mbmqon
+      labels:
+        name: nginx-mbmqon
+    spec:
+      containers:
+      - name: nginx-mbmqon
+        image: nginx
+        ports:
+        - containerPort: 80
+
